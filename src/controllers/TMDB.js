@@ -13,9 +13,11 @@ const getBaseUrl = async (req, res) => {
 				},
 			}
 		);
-		res.status(200).json({ baseUrl: response.data.images.secure_base_url });
+		return res
+			.status(200)
+			.json({ baseUrl: response.data.images.secure_base_url });
 	} catch (err) {
-		res.status(500).json(err);
+		return res.status(500).json(err);
 	}
 };
 
@@ -30,9 +32,9 @@ const getPersonInformation = async (req, res) => {
 				},
 			}
 		);
-		res.status(200).json({ person: response.data });
+		return res.status(200).json({ person: response.data });
 	} catch (err) {
-		res.status(500).json(err);
+		return res.status(500).json(err);
 	}
 };
 
@@ -49,10 +51,10 @@ const getPersonMovies = async (req, res) => {
 			}
 		);
 		if (credits === 'cast')
-			res.status(200).json({ movies: response.data.cast });
-		else res.status(200).json({ movies: response.data.crew });
+			return res.status(200).json({ movies: response.data.cast });
+		else return res.status(200).json({ movies: response.data.crew });
 	} catch (err) {
-		res.status(500).json(err);
+		return res.status(500).json(err);
 	}
 };
 
@@ -66,9 +68,9 @@ const getGenres = async (req, res) => {
 				},
 			}
 		);
-		res.status(200).json({ genres: response.data.genres });
+		return res.status(200).json({ genres: response.data.genres });
 	} catch (err) {
-		res.status(500).json(err);
+		return res.status(500).json(err);
 	}
 };
 
@@ -83,9 +85,9 @@ const getMoviesByGenre = async (req, res) => {
 				},
 			}
 		);
-		res.status(200).json({ elements: response.data.results });
+		return res.status(200).json({ elements: response.data.results });
 	} catch (err) {
-		res.status(500).json(err);
+		return res.status(500).json(err);
 	}
 };
 
@@ -100,9 +102,9 @@ https://api.themoviedb.org/3/genre/tv/list`,
 				},
 			}
 		);
-		res.status(200).json({ genres: response.data.genres });
+		return res.status(200).json({ genres: response.data.genres });
 	} catch (err) {
-		res.status(500).json(err);
+		return res.status(500).json(err);
 	}
 };
 
@@ -116,9 +118,9 @@ const getTrendingMovies = async (req, res) => {
 				},
 			}
 		);
-		res.status(200).json({ trending: response.data.results });
+		return res.status(200).json({ trending: response.data.results });
 	} catch (err) {
-		res.status(500).json(err);
+		return res.status(500).json(err);
 	}
 };
 
@@ -132,9 +134,9 @@ const getTrendingTv = async (req, res) => {
 				},
 			}
 		);
-		res.status(200).json({ trendingTv: response.data.results });
+		return res.status(200).json({ trendingTv: response.data.results });
 	} catch (err) {
-		res.status(500).json(err);
+		return res.status(500).json(err);
 	}
 };
 
@@ -150,12 +152,12 @@ const getMovieInformation = async (req, res) => {
 			}
 		);
 		if (response.data) {
-			res.status(200).json({ movie: response.data });
+			return res.status(200).json({ movie: response.data });
 		} else {
-			res.status(400).json({ message: "don't exist" });
+			return res.status(400).json({ message: "don't exist" });
 		}
 	} catch (err) {
-		res.status(500).json(err);
+		return res.status(500).json(err);
 	}
 };
 
@@ -170,9 +172,9 @@ const searchForMovie = async (req, res) => {
 				},
 			}
 		);
-		res.status(200).json({ search: response.data });
+		return res.status(200).json({ search: response.data });
 	} catch (err) {
-		res.status(500).json(err);
+		return res.status(500).json(err);
 	}
 };
 
@@ -186,9 +188,9 @@ const getPopularMovies = async (req, res) => {
 				},
 			}
 		);
-		res.status(200).json({ movies: response.data.results });
+		return res.status(200).json({ movies: response.data.results });
 	} catch (err) {
-		res.status(500).json(err);
+		return res.status(500).json(err);
 	}
 };
 
@@ -202,9 +204,9 @@ const getPopularTv = async (req, res) => {
 				},
 			}
 		);
-		res.status(200).json({ tv: response.data.results });
+		return res.status(200).json({ tv: response.data.results });
 	} catch (err) {
-		res.status(500).json(err);
+		return res.status(500).json(err);
 	}
 };
 
@@ -222,14 +224,14 @@ const getTopRatedMovies = async (req, res) => {
 				Authorization: `Bearer ${TMDBToken}`,
 			},
 		});
-		res.status(200).json({
+		return res.status(200).json({
 			body: req.body,
 			genres: genres,
 			genresString: genresString,
 			response: response.data,
 		});
 	} catch (err) {
-		res.status(500).json(err);
+		return res.status(500).json(err);
 	}
 };
 
@@ -248,9 +250,9 @@ const getTopRatedTv = async (req, res) => {
 				},
 			}
 		);
-		res.status(200).json({ response: response.data, genres: genres });
+		return res.status(200).json({ response: response.data, genres: genres });
 	} catch (err) {
-		res.status(500).json(err);
+		return res.status(500).json(err);
 	}
 };
 
@@ -266,12 +268,12 @@ const getTvInformation = async (req, res) => {
 			}
 		);
 		if (response.data) {
-			res.status(200).json({ tv: response.data });
+			return res.status(200).json({ tv: response.data });
 		} else {
-			res.status(400).json({ message: "don't exist" });
+			return res.status(400).json({ message: "don't exist" });
 		}
 	} catch (err) {
-		res.status(500).json(err);
+		return res.status(500).json(err);
 	}
 };
 
@@ -287,9 +289,9 @@ https://api.themoviedb.org/3/tv/${tvId}/season/${nbSeason}?append_to_response=cr
 				},
 			}
 		);
-		res.status(200).json({ season: response.data });
+		return res.status(200).json({ season: response.data });
 	} catch (err) {
-		res.status(500).json(err);
+		return res.status(500).json(err);
 	}
 };
 
@@ -304,9 +306,9 @@ const getEpisodeInformation = async (req, res) => {
 				},
 			}
 		);
-		res.status(200).json({ episode: response.data });
+		return res.status(200).json({ episode: response.data });
 	} catch (err) {
-		res.status(500).json(err);
+		return res.status(500).json(err);
 	}
 };
 
@@ -333,9 +335,9 @@ const getMoviesInTheater = async (req, res) => {
 				},
 			}
 		);
-		res.status(200).json({ elements: response.data.results });
+		return res.status(200).json({ elements: response.data.results });
 	} catch (err) {
-		res.status(500).json(err);
+		return res.status(500).json(err);
 	}
 };
 

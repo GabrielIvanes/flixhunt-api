@@ -80,16 +80,20 @@ const getElementDefaultLists = async (req, res) => {
 			.find({ userId: userId, elementId: elementId, elementType: elementType })
 			.then((elementLists) => {
 				if (elementLists) {
-					res.status(200).json({ success: true, elementLists: elementLists });
+					return res
+						.status(200)
+						.json({ success: true, elementLists: elementLists });
 				} else {
-					res
+					return res
 						.status(404)
 						.json({ success: false, message: 'Element has no list.' });
 				}
 			})
-			.catch((err) => res.status(400).json({ success: false, message: err }));
+			.catch((err) => {
+				return res.status(400).json({ success: false, message: err });
+			});
 	} else {
-		res.status(400).json({
+		return res.status(400).json({
 			success: false,
 			message:
 				'Missing the element id or the user id or the type of the element.',
@@ -103,12 +107,12 @@ const getUserCustomLists = async (req, res) => {
 	if (userId) {
 		const customLists = await customListModel.find({ userId });
 		if (customLists) {
-			res.status(200).json({ customLists: customLists });
+			return res.status(200).json({ customLists: customLists });
 		} else {
-			res.status(404).json({ message: 'User got no custom list.' });
+			return res.status(404).json({ message: 'User got no custom list.' });
 		}
 	} else {
-		res.status(400).json({ message: 'Missing the user id.' });
+		return res.status(400).json({ message: 'Missing the user id.' });
 	}
 };
 

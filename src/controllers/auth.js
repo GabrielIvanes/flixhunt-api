@@ -33,8 +33,12 @@ const signUp = async (req, res) => {
 		});
 		userModel
 			.save()
-			.then((user) => res.status(201).json({ user: user.id }))
-			.catch((err) => res.status(400).json(err));
+			.then((user) => {
+				return res.status(201).json({ user: user.id });
+			})
+			.catch((err) => {
+				return res.status(400).json(err);
+			});
 	});
 };
 
