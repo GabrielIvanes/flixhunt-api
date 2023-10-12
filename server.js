@@ -21,6 +21,8 @@ app
 				'http://localhost:3000',
 				'https://flixhunt.onrender.com',
 				'https://flixhunt-api.onrender.com/',
+				'https://flixhunt.ivanes.fr/',
+				'https://flixhunt-api.ivanes.fr/',
 			],
 			credentials: true,
 		})
