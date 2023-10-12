@@ -16,7 +16,7 @@ app
 	.use(bodyParser.urlencoded({ extended: true }))
 	.use(
 		cors({
-			origin: true,
+			origin: ['http://localhost:3000', 'https://flixhunt.onrender.com'],
 			credentials: true,
 		})
 	)
