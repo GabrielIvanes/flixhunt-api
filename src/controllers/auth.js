@@ -56,7 +56,11 @@ const signIn = async (req, res) => {
 								expiresIn: maxAge,
 							}
 						);
-						res.cookie('accessToken', token, { httpOnly: true, maxAge });
+						res.cookie('accessToken', token, {
+							httpOnly: true,
+							maxAge,
+							secure: true,
+						});
 						return res.json({
 							success: true,
 							user: user._id,
