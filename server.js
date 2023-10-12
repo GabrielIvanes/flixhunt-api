@@ -14,16 +14,16 @@ const port = process.env.port || 3000;
 app
 	.use(bodyParser.json())
 	.use(bodyParser.urlencoded({ extended: true }))
-	.use(
-		cors({
-			origin: [
-				'http://localhost:3000',
-				'https://flixhunt.onrender.com',
-				'https://flixhunt-api.onrender.com/',
-			],
-			credentials: true,
-		})
-	)
+	// .use(
+	// 	cors({
+	// 		origin: [
+	// 			'http://localhost:3000',
+	// 			'https://flixhunt.onrender.com',
+	// 			'https://flixhunt-api.onrender.com/',
+	// 		],
+	// 		credentials: true,
+	// 	})
+	// )
 	.use(cookieParser());
 
 app.get('/', (req, res) => {
